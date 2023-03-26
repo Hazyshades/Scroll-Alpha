@@ -1,7 +1,5 @@
 import time
-
 from selenium.common import NoSuchElementException
-
 from selenium.webdriver.common.by import By
 
 
@@ -24,4 +22,4 @@ class MetaMask:
             web_driver.find_element(By.XPATH, '//*[@id="popover-content"]/div/div/section/div[3]/button').click()
             time.sleep(3)
         except NoSuchElementException:
-            print("Button gotIt doesn't exist")
+            print("Button Got It doesn't exist")
