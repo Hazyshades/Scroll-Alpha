@@ -1,3 +1,5 @@
+import random
+
 networks = {
     'Optimism': {
         'net_name': 'Scroll Alpha Testnet',
@@ -7,3 +9,6 @@ networks = {
         'explorer': 'https://blockscout.scroll.io',
     }
 }
+
+value_input = random.uniform(0.0099, 0.0109)
+bridge_amount = 0.005

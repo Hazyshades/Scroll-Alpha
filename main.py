@@ -10,9 +10,17 @@ def main():
     metamask_password = "***"
     metamask = MetaMask(extension_id, metamask_password)
     browser = Browser(profile_path, profile_number, metamask)
-    browser.open_site()
-    browser.prepare_network()
+
+    browser.login()
+
+    browser.add_networks()
+
+    browser.allow_test_network()
+
+    browser.change_current_networks()
+
     browser.connect_mm(site_url)
+
     browser.bridge_to_scroll()
 
 
