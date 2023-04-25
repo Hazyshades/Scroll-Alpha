@@ -45,7 +45,17 @@ class Browser:
 
         time.sleep(3)
         self.confirm_transaction()
-        time.sleep(1113)
+
+    def swap_syncswap(self):
+        self.webdriver.get(f"https://syncswap.xyz/")
+        time.sleep(3)
+        try:
+            self.webdriver.find_element(By.XPATH,
+                                        '//*[@id="container"]/div/div[4]/div/div/div/div/div[1]/div/svg').click()
+
+        except NoSuchElementException:
+            print('Окна нет')
+            time.sleep(3)
 
     def confirm_transaction(self):
         self.webdriver.switch_to.window(self.webdriver.window_handles[1])

@@ -4,9 +4,11 @@ from selenium.webdriver.common.by import By
 
 
 class MetaMask:
-    def __init__(self, extension_id, password):
+    def __init__(self, extension_id, password, network_name_goerli):
         self.extension_id = extension_id
         self.password = password
+        self.network_name_goerli = network_name_goerli
+
 
     def login(self, web_driver):
         web_driver.get(f"chrome-extension://{self.extension_id}/popup.html")
@@ -75,7 +77,7 @@ class MetaMask:
         current_network.click()
         time.sleep(3)
 
-        goerli_network = web_driver.find_element(By.XPATH, "//*[contains(text(), 'Goerli')]")
+        goerli_network = web_driver.find_element(By.XPATH, f"//*[contains(text(), '{self.network_name_goerli}')]")
         goerli_network.click()
         time.sleep(3)
 

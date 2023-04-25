@@ -7,8 +7,9 @@ def main():
     profile_path = r"C:\Users\leo\AppData\Local\Google\Chrome\User Data"
     profile_number = r'Profile 1'
     extension_id = "nkbihfbeogaeaoehlefnkodbefgpgknn"
+    network_name_goerli = 'Goerli'
     metamask_password = "***"
-    metamask = MetaMask(extension_id, metamask_password)
+    metamask = MetaMask(extension_id, metamask_password, network_name_goerli)
     browser = Browser(profile_path, profile_number, metamask)
 
     browser.login()
