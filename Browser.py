@@ -25,37 +25,13 @@ class Browser:
     def change_current_networks(self):
         self.metamask.change_current_networks(self.webdriver)
 
-    def connect_mm(self, game_url):
+    def connect_mm(self, site_url):
         try:
-            self.webdriver.get(game_url)
+            self.webdriver.get(site_url)
             time.sleep(5)
             self.switch_network()
         except IndexError:
             print("Network already connected")
-
-    def bridge_to_scroll(self):
-        enter_amount = self.webdriver.find_element(By.XPATH,
-                                                   '//*[@id=":r0:"]')
-        enter_amount.send_keys(bridge_amount)
-        time.sleep(3)
-        send_button = self.webdriver.find_element(By.XPATH,
-                                                  '//*[@id=":r2:"]')
-        if send_button.is_enabled():
-            send_button.click()
-
-        time.sleep(3)
-        self.confirm_transaction()
-
-    def swap_syncswap(self):
-        self.webdriver.get(f"https://syncswap.xyz/")
-        time.sleep(3)
-        try:
-            self.webdriver.find_element(By.XPATH,
-                                        '//*[@id="container"]/div/div[4]/div/div/div/div/div[1]/div/svg').click()
-
-        except NoSuchElementException:
-            print('Окна нет')
-            time.sleep(3)
 
     def confirm_transaction(self):
         self.webdriver.switch_to.window(self.webdriver.window_handles[1])

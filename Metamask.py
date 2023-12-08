@@ -4,19 +4,18 @@ from selenium.webdriver.common.by import By
 
 
 class MetaMask:
-    def __init__(self, extension_id, password, network_name_goerli):
+    def __init__(self, extension_id, password, network_name):
         self.extension_id = extension_id
         self.password = password
-        self.network_name_goerli = network_name_goerli
-
+        self.network_name = network_name
 
     def login(self, web_driver):
         web_driver.get(f"chrome-extension://{self.extension_id}/popup.html")
-        time.sleep(3)
+        time.sleep(5)
         passT = web_driver.find_element(By.XPATH, "//*[@id='password']")
         passT.send_keys(self.password)
         time.sleep(3)
-        clickT = web_driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/button")
+        clickT = web_driver.find_element(By.XPATH, '//*[@id="app-content"]/div/div[2]/div/div/button')
         clickT.click()
         time.sleep(3)
 
@@ -28,25 +27,9 @@ class MetaMask:
 
         # change Eng lang
 
-        web_driver.get(f"chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#settings/general")
-        time.sleep(1)
-        web_driver.find_element(By.XPATH, "//*[contains(text(), 'English')]").click()
-
-    def allow_test_network(self, web_driver):
-        web_driver.get(f"chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#settings/advanced")
-        time.sleep(1)
-
-        allow_test_networks = web_driver.find_element(By.XPATH,
-                                                      '//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div[2]/div[7]/div[2]/div/label/div[1]/div[1]/div[2]')
-
-        label_off = web_driver.find_element(By.XPATH,
-                                            '//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div[2]/div[7]/div[2]/div/label/div[2]/span[1]')
-
-        print(label_off.text)
-
-        if label_off.text == 'OFF':
-            allow_test_networks.click()
-            time.sleep(1)
+       # web_driver.get(f"chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#settings/general")
+       # time.sleep(1)
+       # web_driver.find_element(By.XPATH, "//*[contains(text(), 'English')]").click()
 
     def add_networks(self, web_driver):
         try:
@@ -77,8 +60,6 @@ class MetaMask:
         current_network.click()
         time.sleep(3)
 
-        goerli_network = web_driver.find_element(By.XPATH, f"//*[contains(text(), '{self.network_name_goerli}')]")
-        goerli_network.click()
+        network = web_driver.find_element(By.XPATH, f"//*[contains(text(), '{self.network_name}')]")
+        network.click()
         time.sleep(3)
-
-
